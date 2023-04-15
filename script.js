@@ -46,7 +46,7 @@ recordBtn.addEventListener("click", async () => {
 });
 
 // Send audio to server
-function sendAudioToServer(blob) {
+function sendAudio(blob) {
   statusElement.innerHTML = "Processing";
   fetch("/transcribe", {
     method: "POST",
