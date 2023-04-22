@@ -4,10 +4,31 @@ import os
 import openai
 import warnings
 import io
+from flask import Flask, Response, request, render_template
 
 warnings.filterwarnings("ignore") # ignore warnings
 app = Flask(__name__)
 openai.api_key = os.getenv("OPENAI_API_KEY")
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/signup", methods = ["POST", "GET"])
+def signup():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        return "Thank you for signing up!"
+    return render_template("signup.html")
+
+@app.route("/login", methods = ["POST", "GET"])
+def login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        # check if email and password are correct
+        
+    return render_template("login.html")
 
 @app.route("/transcribe", methods=["POST"]) # POST request to /transcribe
 def transcribe():
